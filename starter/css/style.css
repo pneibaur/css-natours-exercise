@@ -6,3 +6,79 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #777;
+    /* this adds that nice white border around the whole webpage */
+    padding: 30px;
+}
+
+.header{
+    height: 95vh;
+    /* you can list two images in this attribute! note we're using linear-gradient, and even the 'to' direction here! */
+    background-image: 
+    linear-gradient(to right bottom, 
+    rgba(126, 213, 111, 0.7), 
+    rgba(40, 180, 133, 0.7)), 
+    url(../img/hero.jpg);
+    /* always tries to fit the element within the box it has */
+    background-size: cover;
+    /* top of the image always stays at the top. won't get cropped */
+    background-position: top;
+    /* this helps have that slanted loot at the bottom */
+    /* you can specify multiple coordinates! not just four. you can make quite a few shapes */
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+    position: relative;
+}
+
+.logoBox{
+    /* use the absolute position in conjunction with top/left/right/bottom attributes to get the position right */
+    position: absolute;
+    /* where does this reference start? the reference is the parent element */
+    top: 40px;
+    left: 40px;
+}
+
+.logo{
+    /* we only need to specify height or width, and the other will scale proportionately */
+    height: 35px;
+}
+
+.headerTextBox{
+    position: absolute;
+    /* when you specify 50% from the top left, it'll measure from the leftmost part of the box */
+    /* and topmost part of the box. to fix, we need the transform attribute */
+    top: 40%;
+    left: 50%;
+    /* this tells CSS to start the measurement in the middle of the box you're setting. */
+    transform: translate(-50%, -50%);
+}
+
+.headingPrimary{
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.headingPrimaryMain{
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+}
+
+.headingPrimarySub{
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+}
