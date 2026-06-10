@@ -58,3 +58,13 @@ follow highest to lowest specificity
 
 these are ranked and counted in a (#,#,#,#) style. it counts how many occurences there are of each rank, and chooses from there. if there are any inline styles, those outrank everything else.... and any element with multiple inline styles will outrank the other inline styles with only one... the next applies to IDs, and so on. one style declaration block may pan out (0,1,2,1), and the next one that selects the same element may pan out as (0,2,3,1) - and the latter will win because there's a '2' in the 2nd position that outranks the '1' in the 2nd position in the first choice. 
 
+finally, if all other things are equal, the last declared style will be applied. 
+
+### TIPS
+- only use !important as a last resort. it helps with more maintainable code. 
+- inline styles will always have priority over external stylesheets
+- a selector with 1 # will always have more priority over classes
+- same with 1 class over elements
+- the universal selector * has no specificity
+- rely more on specificity than order of selectors. 
+- rely on order when using a 3rd party stylesheet. always put yours last. 
