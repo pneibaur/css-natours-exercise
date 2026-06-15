@@ -7,20 +7,32 @@ Dark green: #28b485
 
 */
 
-*{
+*, 
+*::after,
+*::before{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit;
+}
+
+html{
+    /* REMS are based on the root font size of the project. which is why we set 10px here in the HTML, across the board.  */
+    /* this means 1 rem is 10px. easy to remember and work with! */
+    /* further change! it's bad practice to override the default browser settings (which is 16px) by specifying our own pixels */
+    /* insetad, we set it to a percentage. 62.5% maths out to 10px, which makes it easy for us. */
+    font-size: 62.5%;
 }
 
 body{
     font-family: 'lato', sans-serif;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
     line-height: 1.7;
     color: #777;
     /* this adds that nice white border around the whole webpage */
-    padding: 30px;
+    padding: 3rem;
+    /* we started with this declaration in the * universal selector, however we moved it to here, and used the power of inheritance in the universal selector! */
+    box-sizing: border-box;
 }
 
 .header{
@@ -45,13 +57,13 @@ body{
     /* use the absolute position in conjunction with top/left/right/bottom attributes to get the position right */
     position: absolute;
     /* where does this reference start? the reference is the parent element */
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
 .logo{
     /* we only need to specify height or width, and the other will scale proportionately */
-    height: 35px;
+    height: 3.5rem;
 }
 
 .headerTextBox{
@@ -73,14 +85,14 @@ body{
     /* when you do animations, this whole element is what moves.  */
     /* this makes the back part of the element (the z-axis sort of), is hidden, and it fixes the shaking */
     backface-visibility: hidden;
-    margin-bottom: 60px;
+    margin-bottom: 6rem;
 }
 
 .headingPrimaryMain{
     display: block;
-    font-size: 60px;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation-name: moveInLeft;
     animation-duration: 1s;
@@ -103,10 +115,10 @@ body{
 @keyframes moveInLeft{
     0%{
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
     80%{
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
     100%{
         opacity: 1;
@@ -117,10 +129,10 @@ body{
 @keyframes moveInRight{
     0%{
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
     80%{
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
     100%{
         opacity: 1;
@@ -130,7 +142,7 @@ body{
 @keyframes moveInBottom{
     0%{
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(4rem);
     }
     100%{
         opacity: 1;
@@ -142,10 +154,10 @@ body{
 .btn:link, .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 15px 40px;
+    padding: 1.5rem 4rem;
     /* by default the element is inline */
     display: inline-block;
-    border-radius: 50px;
+    border-radius: 5rem;
     /* this is the simpler method of animation. you can specify 'all' when you don't want to write it all out. */
     transition: all .2s;
     /* used for the ::after element, because we are using position absolute on it */
@@ -155,13 +167,13 @@ body{
     /* this makes it go up by 5 px */
     transform: translateY(-5px);
     /* 1st value: offset x direction. 2nd value: offset y direction. 3rd value: blur. 4th value is color */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .3);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .3);
 }
 
 .btn:active{
     /* when clicked, this makes it "move up" by 1px, but since hover is 5px, it looks like it moves down by 4px */
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3);
 }
 
 .btnWhite{
@@ -185,7 +197,7 @@ body{
     /* specify that this child element is going to be the same size as it's parent element.  */
     height: 100%;
     width: 100%;
-    border-radius: 50px;
+    border-radius: 5rem;
     /* placing the element behind the .btn element */
     position: absolute;
     top: 0;
