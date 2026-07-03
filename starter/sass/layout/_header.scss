@@ -1,0 +1,44 @@
+@use "../abstracts/variables" as vars;
+
+.header{
+    height: 95vh;
+    /* you can list two images in this attribute! note we're using linear-gradient, and even the 'to' direction here! */
+    background-image: 
+    linear-gradient(to right bottom, 
+    rgba(vars.$color-primary-light, 0.7), 
+    rgba(vars.$color-primary-dark, 0.7)), 
+    url(../img/hero.jpg);
+    /* always tries to fit the element within the box it has */
+    background-size: cover;
+    /* top of the image always stays at the top. won't get cropped */
+    background-position: top;
+    /* this helps have that slanted loot at the bottom */
+    /* you can specify multiple coordinates! not just four. you can make quite a few shapes */
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+    position: relative;
+
+    &__logo-box{
+        /* use the absolute position in conjunction with top/left/right/bottom attributes to get the position right */
+        position: absolute;
+        /* where does this reference start? the reference is the parent element */
+        top: 4rem;
+        left: 4rem;
+    }
+
+    &__logo{
+        /* we only need to specify height or width, and the other will scale proportionately */
+        height: 3.5rem;
+    }
+
+    &__text-box{
+        position: absolute;
+        /* when you specify 50% from the top left, it'll measure from the leftmost part of the box */
+        /* and topmost part of the box. to fix, we need the transform attribute */
+        top: 40%;
+        left: 50%;
+        /* this tells CSS to start the measurement in the middle of the box you're setting. */
+        transform: translate(-50%, -50%);
+        /* this affects the button link and centers it (and others) */
+        text-align: center;
+    }
+}

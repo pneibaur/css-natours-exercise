@@ -1,0 +1,29 @@
+@use "../abstracts/variables" as vars;
+
+*, 
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+    /* REMS are based on the root font size of the project. which is why we set 10px here in the HTML, across the board.  */
+    /* this means 1 rem is 10px. easy to remember and work with! */
+    /* further change! it's bad practice to override the default browser settings (which is 16px) by specifying our own pixels */
+    /* insetad, we set it to a percentage. 62.5% maths out to 10px, which makes it easy for us. */
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'lato', sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: vars.$color-grey-dark;
+    /* this adds that nice white border around the whole webpage */
+    padding: 3rem;
+    /* we started with this declaration in the * universal selector, however we moved it to here, and used the power of inheritance in the universal selector! */
+    box-sizing: border-box;
+}

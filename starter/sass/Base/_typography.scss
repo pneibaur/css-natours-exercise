@@ -1,0 +1,35 @@
+@use "../abstracts/variables" as vars;
+@use "../base/animations";
+
+.heading-primary{
+    color: vars.$color-white;
+    text-transform: uppercase;
+    /* notice a shake at the end of the animation? put this in the parent element */
+    /* when you do animations, this whole element is what moves.  */
+    /* this makes the back part of the element (the z-axis sort of), is hidden, and it fixes the shaking */
+    backface-visibility: hidden;
+    margin-bottom: 6rem;
+    
+    &--main{
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+    
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        /* these seem self explanatory. how many times the animation iterates. and how much of a delay. */
+        /* animation-iteration-count: 3;
+        animation-delay: 3s; */
+    }
+    
+    &--sub{
+        display: block;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 17.4px;
+        /* this takes all three items above and puts it in one easy line! */
+        animation: moveInRight 1s ease-out;
+    }
+}

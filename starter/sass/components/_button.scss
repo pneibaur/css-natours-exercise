@@ -1,0 +1,74 @@
+
+@use "../abstracts/variables" as vars;
+@use "../Base/animations";
+
+.btn{
+
+    /* the :link is a pseudo class */
+    /* the :visited pseudoclass is normally what turns a blue link purple after a click */
+    &:link, &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        /* by default the element is inline */
+        display: inline-block;
+        border-radius: 5rem;
+        /* this is the simpler method of animation. you can specify 'all' when you don't want to write it all out. */
+        transition: all .2s;
+        /* used for the ::after element, because we are using position absolute on it */
+        position: relative;
+    }
+    &:hover{
+        /* this makes it go up by 5 px */
+        transform: translateY(-5px);
+        /* 1st value: offset x direction. 2nd value: offset y direction. 3rd value: blur. 4th value is color */
+        box-shadow: 0 1rem 2rem rgba(vars.$color-black, .3);
+        
+        &::after{
+            /* scale 2 makes it double in size */
+            transform: scaleX(1.5) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    &:active{
+        /* when clicked, this makes it "move up" by 1px, but since hover is 5px, it looks like it moves down by 4px */
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba(vars.$color-black, .3);
+    }
+    
+    &--white{
+        background-color: vars.$color-white;
+        color: vars.$color-grey-dark;
+
+        &::after{
+            background-color: vars.$color-white;
+        }
+    }
+    
+    &-animated{
+        animation: moveInBottom .8s ease-out .75s;
+        /* we have a .75s delay before the animation starts... the button loads and is visible, then it does the animation */
+        /* so this animation fill mode works to automatically apply the animation styles before the animation starts */
+        animation-fill-mode: backwards;
+    }
+    
+    /* this is like adding an element after the element we've selected */
+    &::after{
+        /* we ALWAYS have to specify content property, even if it's nothing, or else it won't show */
+        content: "";
+        /* same thing as the display property. it's inline-block bc that's what the btn is also. */
+        display: inline-block;
+        /* specify that this child element is going to be the same size as it's parent element.  */
+        height: 100%;
+        width: 100%;
+        border-radius: 5rem;
+        /* placing the element behind the .btn element */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+    
+}
