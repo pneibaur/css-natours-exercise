@@ -6,212 +6,201 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
-
-*, 
+*,
 *::after,
-*::before{
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
-html{
-    /* REMS are based on the root font size of the project. which is why we set 10px here in the HTML, across the board.  */
-    /* this means 1 rem is 10px. easy to remember and work with! */
-    /* further change! it's bad practice to override the default browser settings (which is 16px) by specifying our own pixels */
-    /* insetad, we set it to a percentage. 62.5% maths out to 10px, which makes it easy for us. */
-    font-size: 62.5%;
+html {
+  /* REMS are based on the root font size of the project. which is why we set 10px here in the HTML, across the board.  */
+  /* this means 1 rem is 10px. easy to remember and work with! */
+  /* further change! it's bad practice to override the default browser settings (which is 16px) by specifying our own pixels */
+  /* insetad, we set it to a percentage. 62.5% maths out to 10px, which makes it easy for us. */
+  font-size: 62.5%;
 }
 
-body{
-    font-family: 'lato', sans-serif;
-    font-weight: 400;
-    /* font-size: 16px; */
-    line-height: 1.7;
-    color: #777;
-    /* this adds that nice white border around the whole webpage */
-    padding: 3rem;
-    /* we started with this declaration in the * universal selector, however we moved it to here, and used the power of inheritance in the universal selector! */
-    box-sizing: border-box;
+body {
+  font-family: "lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: #777;
+  /* this adds that nice white border around the whole webpage */
+  padding: 3rem;
+  /* we started with this declaration in the * universal selector, however we moved it to here, and used the power of inheritance in the universal selector! */
+  box-sizing: border-box;
 }
 
-.header{
-    height: 95vh;
-    /* you can list two images in this attribute! note we're using linear-gradient, and even the 'to' direction here! */
-    background-image: 
-    linear-gradient(to right bottom, 
-    rgba(126, 213, 111, 0.7), 
-    rgba(40, 180, 133, 0.7)), 
-    url(../img/hero.jpg);
-    /* always tries to fit the element within the box it has */
-    background-size: cover;
-    /* top of the image always stays at the top. won't get cropped */
-    background-position: top;
-    /* this helps have that slanted loot at the bottom */
-    /* you can specify multiple coordinates! not just four. you can make quite a few shapes */
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
-    position: relative;
+.header {
+  height: 95vh;
+  /* you can list two images in this attribute! note we're using linear-gradient, and even the 'to' direction here! */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.7), rgba(40, 180, 133, 0.7)), url(../img/hero.jpg);
+  /* always tries to fit the element within the box it has */
+  background-size: cover;
+  /* top of the image always stays at the top. won't get cropped */
+  background-position: top;
+  /* this helps have that slanted loot at the bottom */
+  /* you can specify multiple coordinates! not just four. you can make quite a few shapes */
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+  position: relative;
+}
+.header__logo-box {
+  /* use the absolute position in conjunction with top/left/right/bottom attributes to get the position right */
+  position: absolute;
+  /* where does this reference start? the reference is the parent element */
+  top: 4rem;
+  left: 4rem;
+}
+.header__logo {
+  /* we only need to specify height or width, and the other will scale proportionately */
+  height: 3.5rem;
+}
+.header__text-box {
+  position: absolute;
+  /* when you specify 50% from the top left, it'll measure from the leftmost part of the box */
+  /* and topmost part of the box. to fix, we need the transform attribute */
+  top: 40%;
+  left: 50%;
+  /* this tells CSS to start the measurement in the middle of the box you're setting. */
+  transform: translate(-50%, -50%);
+  /* this affects the button link and centers it (and others) */
+  text-align: center;
 }
 
-.header__logo-box{
-    /* use the absolute position in conjunction with top/left/right/bottom attributes to get the position right */
-    position: absolute;
-    /* where does this reference start? the reference is the parent element */
-    top: 4rem;
-    left: 4rem;
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* notice a shake at the end of the animation? put this in the parent element */
+  /* when you do animations, this whole element is what moves.  */
+  /* this makes the back part of the element (the z-axis sort of), is hidden, and it fixes the shaking */
+  backface-visibility: hidden;
+  margin-bottom: 6rem;
+}
+.heading-primary--main {
+  display: block;
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /* these seem self explanatory. how many times the animation iterates. and how much of a delay. */
+  /* animation-iteration-count: 3;
+  animation-delay: 3s; */
+}
+.heading-primary--sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+  /* this takes all three items above and puts it in one easy line! */
+  animation: moveInRight 1s ease-out;
 }
 
-.header__logo{
-    /* we only need to specify height or width, and the other will scale proportionately */
-    height: 3.5rem;
-}
-
-.header__text-box{
-    position: absolute;
-    /* when you specify 50% from the top left, it'll measure from the leftmost part of the box */
-    /* and topmost part of the box. to fix, we need the transform attribute */
-    top: 40%;
-    left: 50%;
-    /* this tells CSS to start the measurement in the middle of the box you're setting. */
-    transform: translate(-50%, -50%);
-    /* this affects the button link and centers it (and others) */
-    text-align: center;
-}
-
-.heading-primary{
-    color: #fff;
-    text-transform: uppercase;
-    /* notice a shake at the end of the animation? put this in the parent element */
-    /* when you do animations, this whole element is what moves.  */
-    /* this makes the back part of the element (the z-axis sort of), is hidden, and it fixes the shaking */
-    backface-visibility: hidden;
-    margin-bottom: 6rem;
-}
-
-.heading-primary--main{
-    display: block;
-    font-size: 6rem;
-    font-weight: 400;
-    letter-spacing: 3.5rem;
-
-    animation-name: moveInLeft;
-    animation-duration: 1s;
-    animation-timing-function: ease-out;
-    /* these seem self explanatory. how many times the animation iterates. and how much of a delay. */
-    /* animation-iteration-count: 3;
-    animation-delay: 3s; */
-}
-
-.heading-primary--sub{
-    display: block;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 17.4px;
-    /* this takes all three items above and puts it in one easy line! */
-    animation: moveInRight 1s ease-out;
-}
 /* notice the keyframes are declared after when they are called */
 /* also, you can call these in multiple elements however you'd like */
-@keyframes moveInLeft{
-    0%{
-        opacity: 0;
-        transform: translateX(-10rem);
-    }
-    80%{
-        transform: translateX(1rem);
-    }
-    100%{
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes moveInRight{
-    0%{
-        opacity: 0;
-        transform: translateX(10rem);
-    }
-    80%{
-        transform: translateX(-1rem);
-    }
-    100%{
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-@keyframes moveInBottom{
-    0%{
-        opacity: 0;
-        transform: translateY(4rem);
-    }
-    100%{
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* the :link is a pseudo class */
-/* the :visited pseudoclass is normally what turns a blue link purple after a click */
-.btn:link, .btn:visited {
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1.5rem 4rem;
-    /* by default the element is inline */
-    display: inline-block;
-    border-radius: 5rem;
-    /* this is the simpler method of animation. you can specify 'all' when you don't want to write it all out. */
-    transition: all .2s;
-    /* used for the ::after element, because we are using position absolute on it */
-    position: relative;
-}
-.btn:hover{
-    /* this makes it go up by 5 px */
-    transform: translateY(-5px);
-    /* 1st value: offset x direction. 2nd value: offset y direction. 3rd value: blur. 4th value is color */
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .3);
-}
-
-.btn:active{
-    /* when clicked, this makes it "move up" by 1px, but since hover is 5px, it looks like it moves down by 4px */
-    transform: translateY(-1px);
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .3);
-}
-
-.btn--white{
-    background-color: white;
-    color: #777;
-}
-
-.btn-animated{
-    animation: moveInBottom .8s ease-out .75s;
-    /* we have a .75s delay before the animation starts... the button loads and is visible, then it does the animation */
-    /* so this animation fill mode works to automatically apply the animation styles before the animation starts */
-    animation-fill-mode: backwards;
-}
-
-/* this is like adding an element after the element we've selected */
-.btn::after{
-    /* we ALWAYS have to specify content property, even if it's nothing, or else it won't show */
-    content: "";
-    /* same thing as the display property. it's inline-block bc that's what the btn is also. */
-    display: inline-block;
-    /* specify that this child element is going to be the same size as it's parent element.  */
-    height: 100%;
-    width: 100%;
-    border-radius: 5rem;
-    /* placing the element behind the .btn element */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all .4s;
-}
-
-.btn--white::after{
-    background-color: white;
-}
-
-.btn:hover::after{
-    /* scale 2 makes it double in size */
-    transform: scaleX(1.5) scaleY(1.6);
+@keyframes moveInLeft {
+  0% {
     opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-1rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(4rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.btn {
+  /* the :link is a pseudo class */
+  /* the :visited pseudoclass is normally what turns a blue link purple after a click */
+}
+.btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  /* by default the element is inline */
+  display: inline-block;
+  border-radius: 5rem;
+  /* this is the simpler method of animation. you can specify 'all' when you don't want to write it all out. */
+  transition: all 0.2s;
+  /* used for the ::after element, because we are using position absolute on it */
+  position: relative;
+}
+.btn:hover {
+  /* this makes it go up by 5 px */
+  transform: translateY(-5px);
+  /* 1st value: offset x direction. 2nd value: offset y direction. 3rd value: blur. 4th value is color */
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+}
+.btn:hover::after {
+  /* scale 2 makes it double in size */
+  transform: scaleX(1.5) scaleY(1.6);
+  opacity: 0;
+}
+.btn:active {
+  /* when clicked, this makes it "move up" by 1px, but since hover is 5px, it looks like it moves down by 4px */
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+.btn--white {
+  background-color: #fff;
+  color: #777;
+}
+.btn--white::after {
+  background-color: #fff;
+}
+.btn-animated {
+  animation: moveInBottom 0.8s ease-out 0.75s;
+  /* we have a .75s delay before the animation starts... the button loads and is visible, then it does the animation */
+  /* so this animation fill mode works to automatically apply the animation styles before the animation starts */
+  animation-fill-mode: backwards;
+}
+.btn {
+  /* this is like adding an element after the element we've selected */
+}
+.btn::after {
+  /* we ALWAYS have to specify content property, even if it's nothing, or else it won't show */
+  content: "";
+  /* same thing as the display property. it's inline-block bc that's what the btn is also. */
+  display: inline-block;
+  /* specify that this child element is going to be the same size as it's parent element.  */
+  height: 100%;
+  width: 100%;
+  border-radius: 5rem;
+  /* placing the element behind the .btn element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+/*# sourceMappingURL=style.css.map */
