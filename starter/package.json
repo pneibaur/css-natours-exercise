@@ -1,0 +1,16 @@
+{
+  "name": "natour_starter",
+  "version": "1.0.0",
+  "description": "an exercise in CSS and SASS",
+  "keywords": [
+    "css",
+    "sass"
+  ],
+  "license": "ISC",
+  "author": "Phil Neibaur",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "compile:sass": "sass sass/main.scss css/style.css"
+  }
+}
