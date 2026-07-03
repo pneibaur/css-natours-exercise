@@ -1,4 +1,3 @@
-@use "../abstracts/variables" as vars;
 
 *, 
 *::after,
@@ -17,13 +16,6 @@ html{
 }
 
 body{
-    font-family: 'lato', sans-serif;
-    font-weight: 400;
-    /* font-size: 16px; */
-    line-height: 1.7;
-    color: vars.$color-grey-dark;
-    /* this adds that nice white border around the whole webpage */
-    padding: 3rem;
     /* we started with this declaration in the * universal selector, however we moved it to here, and used the power of inheritance in the universal selector! */
     box-sizing: border-box;
 }
