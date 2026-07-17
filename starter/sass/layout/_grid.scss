@@ -1,0 +1,57 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mixin;
+
+.row{
+    max-width: vars.$grid-width;
+    // this is how you center a block element inside another block element
+    // top & bottom is 0, and left & right will be centered.
+    margin: 0 auto;
+    
+    // the :not pseudoclass is basically how it reads. If you selected .row:last-child, then that would only select the last child. 
+    // This :not pseudoclass does the opposite. it selects everything EXCEPT the last-child. which is awesome!
+    &:not(:last-child){
+        margin-bottom: vars.$gutter-vertical;
+    }
+
+    @include mixin.clearfix;
+
+    // this is the attribute selector. it's selecting all elements that have the class that starts with "col-". 
+    // the ^= means it starts with what you set it to. 
+    // the $= means it ends with what you set it to. 
+    [class^="col-"] {
+        // we are using the float method for this project (the most out-dated of the 3 methods). 
+        // This floats the box out of the default inline rendering, and to the left. 
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: vars.$gutter-horizontal;
+        }
+    }
+
+    .col-1-of-2 {
+        // the calc function can do some great things with calculating things like width. It's taking 100% of the width, then subtracting
+        // the gutter-horizontal width, then dividing that by 2. Note how the vars is wrapped in #{}
+        width: calc((100% - #{vars.$gutter-horizontal}) / 2);
+
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2 * #{vars.$gutter-horizontal}) / 3);
+    }
+
+    .col-2-of-3 {
+        width: calc(2 * ( (100% - 2 * #{vars.$gutter-horizontal}) / 3) + #{vars.$gutter-horizontal});
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3 * #{vars.$gutter-horizontal}) / 4);
+    }
+    
+    .col-2-of-4 {
+        width: calc(2 * ( (100% - 3 * #{vars.$gutter-horizontal}) / 4) + #{vars.$gutter-horizontal});
+    }
+
+    .col-3-of-4 {
+        width: calc(3 * ( (100% - 3 * #{vars.$gutter-horizontal}) / 4) + 2 * #{vars.$gutter-horizontal});
+    }
+}

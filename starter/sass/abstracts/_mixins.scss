@@ -1,0 +1,13 @@
+
+// This is the fix for the float method, when the pixel height is 0. 
+@mixin clearfix {
+    // append a psudoelement after the element, which will clear these floats.
+    &::after {
+        // always sent content to "". otherwise the pseudoelement will not appear on the page. 
+        content: "";
+        // always sent the display as a table
+        display: table;
+        // this will clear both floats (float left or float right, whichever is used). 
+        clear: both;
+    }
+}

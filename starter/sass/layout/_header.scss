@@ -14,7 +14,7 @@
     background-position: top;
     /* this helps have that slanted loot at the bottom */
     /* you can specify multiple coordinates! not just four. you can make quite a few shapes */
-    clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
     position: relative;
 
     &__logo-box{
