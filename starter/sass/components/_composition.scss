@@ -1,0 +1,47 @@
+@use "../abstracts/variables" as vars;
+
+.composition {
+    position: relative;
+
+    &__photo {
+        // always try to define width in percentages, because it works well with the viewport
+        width: 55%;
+        box-shadow: 0 1.5rem 4rem rgba(vars.$color-black, .4);
+        border-radius: 2px;
+        // whenever we set position to absolute, it will be placed according to its parent element. 
+        // Hence we use position:relative up above in the .composition area. 
+        // so now it'll be placed at 0,0 (top left) of the parent div. 
+        position: absolute;
+        z-index: 10;
+        transition: .2s;
+        outline-offset: 2rem;
+
+        &--p1{
+            left: 0;
+            top: -2rem;
+        }
+
+        &--p2{
+            // this will start the image on the right instead, at 0 pixels
+            right: 0;
+            top: 2rem;
+        }
+
+        &--p3{
+            left: 20%;
+            top: 10rem;
+        }
+
+        &:hover{
+            outline: 1.5rem solid vars.$color-primary;
+            transform: scale(1.05);
+            box-shadow: 0 2.5rem 4rem rgba(vars.$color-black, .5);
+            z-index: 20;
+        }
+
+    }
+    // this nifty little trick targest the .composition:hover, and also the __photo that's not being hovered. 
+    &:hover &__photo:not(:hover) {
+        transform: scale(.95) translateY(-.5rem);
+    }
+}
