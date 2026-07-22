@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as vars;
+@use "../abstracts/mixins";
 
 .feature-box {
     background-color: rgba(vars.$color-white, .8);
@@ -7,5 +8,16 @@
     text-align: center;
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba(vars.$color-black, .15);
+    transition: .3s;
     
+    &__icon{
+        display: inline-block;
+        font-size: 6rem;
+        margin-bottom: .5rem;
+        @include mixins.gradient-text;
+    }
+
+    &:hover {
+        transform: translateY(-1.5rem) scale(1.03);
+    }
 }

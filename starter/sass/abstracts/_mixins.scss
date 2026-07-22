@@ -1,3 +1,4 @@
+@use "../abstracts/variables" as vars;
 
 // This is the fix for the float method, when the pixel height is 0. 
 @mixin clearfix {
@@ -10,4 +11,10 @@
         // this will clear both floats (float left or float right, whichever is used). 
         clear: both;
     }
+}
+
+@mixin gradient-text {
+    background-image: linear-gradient(to right, vars.$color-primary-light, vars.$color-primary-dark);
+    background-clip: text;
+    color: transparent;
 }

@@ -2,6 +2,7 @@
 
 @use "../abstracts/variables" as vars;
 @use "../base/animations";
+@use "../abstracts/mixins";
 
 body{
     font-family: 'lato', sans-serif;
@@ -53,9 +54,7 @@ body{
     font-weight: 700;
     // display block means it'll take up 100% of the space given. inline-block makes it take up only what's necessary. 
     display: inline-block;
-    background-image: linear-gradient(to right, vars.$color-primary-light, vars.$color-primary-dark);
-    background-clip: text;
-    color: transparent;
+    @include mixins.gradient-text;
     letter-spacing: 2px;
     transition: all .2s;
 

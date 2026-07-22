@@ -14,4 +14,13 @@
     rgba(vars.$color-primary-dark, 0.7)), 
     url(../img/nat-4.jpg);
     background-size: cover;
+    margin-top: -10rem;
+    // This skews the entire section and give it that angled look. Unfortunately it also skews all the child elements so it looks wonky...
+    transform: skewY(-7deg);
+    // fortunately, we can skew it back! This is the "direct child" selector: '>'. 
+    // it writes out like this: .section-features > *. 
+    // basically we are selecting all the direct children of section-features, which in this case is only the .row
+    & > * {
+        transform: skewY(7deg);
+    }
 }
