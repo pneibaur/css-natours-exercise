@@ -1,0 +1,50 @@
+@use "../abstracts/variables" as vars;
+
+.card {
+    // we put a high value on this perspective, because if we put a low number it makes it look weird. 
+    // if it's too high, then it won't have that "pop out" look when it rotates. 
+    perspective: 150rem;
+    // remember, this is used in tandem with position:absolute down below
+    position: relative;
+    height: 50rem;
+
+    &__side{
+        color: white;
+        font-size: 2rem;
+        // when we combine the height with position:absolute, it takes the element out of the rendering flow
+        // this makes the animation we're trying to create here not work with perspective properly
+        // basically the parent element collapses and loses all height, so we have to specify the same height in the parent element. 
+        height: 50rem;
+        transition: all .8s ease;
+        // this is to help stack the --front and --back on top of one another, and set the position to top left. 
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backface-visibility: hidden;
+        border-radius: 3px;
+        box-shadow: 0 1.5rem 4rem rgba(vars.$color-black, .15);
+
+        &--front{
+            background-color: vars.$color-white;
+        }
+
+        &--back{
+            background-color: green;
+            // before the card is 'flipped' it's already rotated 180d. 
+            transform: rotateY(180deg);
+
+            &-1{
+                background-image: linear-gradient(to right bottom, vars.$color-secondary-light, vars.$color-secondary-dark);
+            }
+        }
+    }
+
+    // when we hover over the card and want the __side to transform
+    &:hover &__side--front {
+        transform: rotateY(180deg);
+    }
+    &:hover &__side--back {
+        transform: rotateY(0);
+    }
+}
