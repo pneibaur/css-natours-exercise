@@ -6,15 +6,14 @@
     perspective: 150rem;
     // remember, this is used in tandem with position:absolute down below
     position: relative;
-    height: 50rem;
+    height: 52rem;
 
     &__side{
-        color: white;
         font-size: 2rem;
         // when we combine the height with position:absolute, it takes the element out of the rendering flow
         // this makes the animation we're trying to create here not work with perspective properly
         // basically the parent element collapses and loses all height, so we have to specify the same height in the parent element. 
-        height: 50rem;
+        height: 52rem;
         transition: all .8s ease;
         // this is to help stack the --front and --back on top of one another, and set the position to top left. 
         position: absolute;
@@ -23,6 +22,8 @@
         width: 100%;
         backface-visibility: hidden;
         border-radius: 3px;
+        // down below in the card images, the image wants to overflow, and it ruins the border-radius effect. this keeps that overflow hidden.
+        overflow: hidden;
         box-shadow: 0 1.5rem 4rem rgba(vars.$color-black, .15);
 
         &--front{
@@ -42,9 +43,75 @@
 
     // when we hover over the card and want the __side to transform
     &:hover &__side--front {
-        transform: rotateY(180deg);
+        // we do negative 180deg here so it has that continuous movement like the card is flipping over. 
+        transform: rotateY(-180deg);
     }
     &:hover &__side--back {
         transform: rotateY(0);
+    }
+
+    &__picture{
+        background-size: cover;
+        height: 23rem;
+        // this blends the bg images in the child elements: so now the linear-gradient and the image are one. 
+        // think of this as basic photoshop blending that CSS now has built in! 
+        background-blend-mode: screen;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        &--1{
+            background-image: 
+            linear-gradient(to right bottom, vars.$color-secondary-light, vars.$color-secondary-dark), 
+            url(../../img/nat-5.jpg);
+        }
+        &--2{
+            background-image: url(../../img/nat-5.jpg);
+        }
+        &--3{
+            background-image: url(../../img/nat-5.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: vars.$color-white;
+        position: absolute;
+        top: 12rem;
+        right: -8rem;
+        width: 75%;
+    }
+
+    &__heading-span {
+        padding: .5rem 1rem;
+        // the heading-span is being sliced into two lines, so we want the two lines to be treated as two separate elements. hence this below. 
+        box-decoration-break: clone;
+
+        &--1{
+            background-image: 
+            linear-gradient(to right bottom, rgba(vars.$color-secondary-light, .85), rgba(vars.$color-secondary-dark, .85));
+        }
+    }
+
+    &__details{
+        padding: 3rem;
+
+        ul{
+            list-style: none;
+            width: 80%;
+            // we are aligning a block element inside a block element, so this will work. 
+            margin: 0 auto;
+
+            li{
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+
+                // this targets all the li items except the last child.
+                &:not(:last-child){
+                    border-bottom: 1px solid vars.$color-grey-light-2;
+                }
+            }
+        }
     }
 }
