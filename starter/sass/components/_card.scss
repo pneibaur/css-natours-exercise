@@ -31,12 +31,17 @@
         }
 
         &--back{
-            background-color: green;
             // before the card is 'flipped' it's already rotated 180d. 
             transform: rotateY(180deg);
 
             &-1{
                 background-image: linear-gradient(to right bottom, vars.$color-secondary-light, vars.$color-secondary-dark);
+            }
+            &-2{
+                background-image: linear-gradient(to right bottom, vars.$color-primary-light, vars.$color-primary-dark);
+            }
+            &-3{
+                background-image: linear-gradient(to right bottom, vars.$color-tertiary-light, vars.$color-tertiary-dark);
             }
         }
     }
@@ -64,10 +69,10 @@
             url(../../img/nat-5.jpg);
         }
         &--2{
-            background-image: url(../../img/nat-5.jpg);
+            background-image: linear-gradient(to right bottom, vars.$color-primary-light, vars.$color-primary-dark), url(../../img/nat-6.jpg);
         }
         &--3{
-            background-image: url(../../img/nat-5.jpg);
+            background-image: linear-gradient(to right bottom, vars.$color-tertiary-light, vars.$color-tertiary-dark), url(../../img/nat-7.jpg);
         }
     }
 
@@ -78,8 +83,9 @@
         color: vars.$color-white;
         position: absolute;
         top: 12rem;
-        right: -8rem;
+        right: 1rem;
         width: 75%;
+        text-align: right;
     }
 
     &__heading-span {
@@ -90,6 +96,16 @@
         &--1{
             background-image: 
             linear-gradient(to right bottom, rgba(vars.$color-secondary-light, .85), rgba(vars.$color-secondary-dark, .85));
+        }
+
+        &--2{
+            background-image: 
+            linear-gradient(to right bottom, rgba(vars.$color-primary-light, .85), rgba(vars.$color-primary-dark, .85));
+        }
+
+        &--3{
+            background-image: 
+            linear-gradient(to right bottom, rgba(vars.$color-tertiary-light, .85), rgba(vars.$color-tertiary-dark, .85));
         }
     }
 
@@ -113,5 +129,33 @@
                 }
             }
         }
+    }
+
+    &__cta{
+        position: absolute;
+        // remember, these three lines align the top left of the div to the center, and the transform moves it so it's centered. 
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        // the btn-white is inheritly too big for the small box, so we make the div 90% of it's parent div, so it has the space to be the full width. 
+        width: 90%;
+        // this aligns the text, and all the child elements inherit this too. 
+        text-align: center;
+    }
+
+    &__price-box {
+        text-align: center;
+        margin-bottom: 8rem;
+        color: vars.$color-white;
+    }
+
+    &__price-only{
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value{
+        font-size: 6rem;
+        font-weight: 100;
     }
 }

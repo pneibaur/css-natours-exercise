@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as vars;
+
+.story {
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba(vars.$color-black, .1);
+    background-color: vars.$color-white;
+    border-radius: 3px;
+    padding: 6rem;
+    // here we are specifying an additional 3 rems beyond the 6, because of the transform translateX we used below.
+    padding-left: 9rem;
+    font-size: vars.$default-font-size;
+    // we are skewing the shape here, but every child element will also skew, so we've manually skewed the opposite direction specified below. 
+    transform: skewX(-12deg);
+
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        // this makes the shape float left, and the text float around it. (to the right in this case)
+        float: left;
+        // this takes a vectorized declaration, much like clip-path and polygon. but in this case we're using the circle declaration. 
+        // 1st arg = radius. if we put 50%, then it'll be half the height and width of the element. in this case 7.5rem
+        // 2nd arg = declaring the center of the circle. AKA 50% vertically and 50% horizontally.
+        // in order for this to work, the element has to be floating, and specified width and height, like specified above. 
+        shape-outside: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        // whenever we have float involved, it's best not to use margin to move items around, but transform instead. 
+        transform: translateX(-3rem) skewX(12deg);
+    }
+
+    &__img {
+        height: 100%;
+    }
+
+    &__text {
+        transform: skewX(12deg);
+    }
+}

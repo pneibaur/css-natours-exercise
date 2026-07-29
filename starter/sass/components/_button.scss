@@ -3,7 +3,7 @@
 @use "../Base/animations";
 
 .btn{
-
+    font-size: vars.$default-font-size;
     /* the :link is a pseudo class */
     /* the :visited pseudoclass is normally what turns a blue link purple after a click */
     &:link, &:visited {
@@ -40,6 +40,15 @@
     &--white{
         background-color: vars.$color-white;
         color: vars.$color-grey-dark;
+
+        &::after{
+            background-color: vars.$color-white;
+        }
+    }
+
+    &--green {
+        background-color: vars.$color-primary;
+        color: vars.$color-white;
 
         &::after{
             background-color: vars.$color-white;
